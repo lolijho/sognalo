@@ -24,6 +24,22 @@ npm run build
 npm run preview
 ```
 
+## Deploy su Coolify
+
+Il repository include un'immagine Docker multi-stage pronta per la produzione:
+
+- build Vite eseguita con Node.js 22;
+- asset statici serviti da Nginx sulla porta `80`;
+- fallback SPA verso `index.html`;
+- cache lunga per gli asset versionati e health check integrato.
+
+Configurazione applicazione Coolify:
+
+- **Build pack:** Dockerfile
+- **Dockerfile:** `/Dockerfile`
+- **Porta esposta:** `80`
+- **Branch:** `feat/cinematic-sognalo-landing`
+
 ## Struttura UI
 
 Il percorso shadcn predefinito è `src/components/ui`, configurato in `components.json`. Il componente hero si trova in `src/components/ui/cinematic-landing-hero.tsx`; gli stili globali sono in `src/index.css`.
