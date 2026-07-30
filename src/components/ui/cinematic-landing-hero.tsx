@@ -14,7 +14,7 @@ const INJECTED_STYLES = `
   .bg-grid-theme { background-size:60px 60px;background-image:linear-gradient(to right,rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.045) 1px,transparent 1px);mask-image:radial-gradient(ellipse at center,#000 0%,transparent 72%);-webkit-mask-image:radial-gradient(ellipse at center,#000 0%,transparent 72%) }
   .text-3d-matte { color:#f8fafc;text-shadow:0 12px 32px rgba(106,125,255,.24),0 2px 4px rgba(0,0,0,.3) }
   .text-silver-matte { background:linear-gradient(180deg,#fff 0%,#7886af 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 12px 25px rgba(69,88,230,.22));transform:translateZ(0) }
-  .text-card-silver { background:linear-gradient(180deg,#fff 0%,#9aa8ca 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 12px 24px rgba(0,0,0,.75)) }
+  .text-card-silver { background:linear-gradient(180deg,#fff 0%,#9aa8ca 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 12px 24px rgba(0,0,0,.75));text-shadow:0 0 0 transparent }
   .premium-depth-card { background:radial-gradient(circle at var(--mouse-x,60%) var(--mouse-y,30%),rgba(107,126,255,.18),transparent 28%),linear-gradient(145deg,#162869 0%,#090e1c 72%);box-shadow:0 45px 110px -20px rgba(0,0,0,.95),inset 0 1px 2px rgba(255,255,255,.2),inset 0 -2px 5px rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.06) }
   .card-sheen { position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:40;background:radial-gradient(700px circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(255,255,255,.075),transparent 42%);mix-blend-mode:screen }
   .device-shell { background:#0b0c11;box-shadow:inset 0 0 0 2px #515565,inset 0 0 0 7px #020204,0 42px 85px -16px rgba(0,0,0,.95),0 15px 25px -5px rgba(0,0,0,.7);transform-style:preserve-3d }
@@ -25,7 +25,7 @@ const INJECTED_STYLES = `
   .tactile-btn:active { transform:translateY(1px) }
   .btn-light { background:linear-gradient(180deg,#fff,#e8edff);color:#0b1020;box-shadow:0 2px 4px rgba(0,0,0,.1),0 14px 28px -5px rgba(0,0,0,.45),inset 0 1px 1px #fff,inset 0 -3px 6px rgba(0,0,0,.07) }
   .btn-ghost { background:linear-gradient(180deg,#292d3a,#151721);color:white;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 13px 25px -5px rgba(0,0,0,.9),inset 0 1px 1px rgba(255,255,255,.13) }
-  .progress-ring { transform:rotate(-90deg);transform-origin:center;stroke-dasharray:402;stroke-dashoffset:402;stroke-linecap:round }
+  .progress-ring { transform:rotate(-90.1deg);transform-origin:center;stroke-dasharray:402;stroke-dashoffset:402;stroke-linecap:round }
   .transform-style-3d { transform-style:preserve-3d }
   @media (prefers-reduced-motion: reduce) { .gsap-reveal { visibility:visible } }
 `;
@@ -164,7 +164,7 @@ export function CinematicHero({
           <div className="card-sheen" aria-hidden="true" />
           <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col items-center justify-evenly gap-2 px-4 py-7 lg:grid lg:grid-cols-3 lg:gap-8 lg:px-12 lg:py-0">
             <div className="card-brand gsap-reveal order-1 flex w-full justify-center lg:order-3 lg:justify-end">
-              <h2 className="text-card-silver font-display text-5xl font-black uppercase tracking-[-.08em] md:text-7xl lg:text-[7rem]">{brandName}</h2>
+              <h2 className="text-card-silver font-display px-1 pb-1 text-5xl font-black uppercase leading-[1.1] tracking-[-.06em] md:text-7xl md:tracking-[-.08em] lg:text-[7rem]">{brandName}</h2>
             </div>
 
             <div className="mockup-scroll-wrapper order-2 relative flex h-[390px] w-full items-center justify-center lg:h-[600px]" style={{ perspective: "1000px" }}>
@@ -178,7 +178,7 @@ export function CinematicHero({
                         <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5"><Lightbulb className="h-4 w-4 text-amber-300" /></div>
                       </div>
                       <div className="phone-widget relative mx-auto mb-7 flex h-44 w-44 translate-y-6 items-center justify-center">
-                        <svg className="absolute inset-0 h-full w-full" aria-hidden="true"><circle cx="88" cy="88" r="64" fill="none" stroke="rgba(255,255,255,.04)" strokeWidth="12" /><circle className="progress-ring" cx="88" cy="88" r="64" fill="none" stroke="#7182ff" strokeWidth="12" /></svg>
+                        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 176 176" shapeRendering="geometricPrecision" aria-hidden="true"><circle cx="88" cy="88" r="64" fill="none" stroke="rgba(255,255,255,.04)" strokeWidth="12" /><circle className="progress-ring" cx="88" cy="88" r="64" fill="none" stroke="#7182ff" strokeWidth="12" /></svg>
                         <div className="z-10 text-center"><strong className="counter-val block text-5xl font-black tracking-tighter">0</strong><span className="text-[8px] font-bold uppercase tracking-[.16em] text-indigo-200/50">{metricLabel}</span></div>
                       </div>
                       <div className="space-y-3">
