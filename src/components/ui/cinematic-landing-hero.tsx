@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
-const LOGO_URL = "https://r2.costanza.dev/costanza-storage/sognalo/logo.png";
+const LOGO_URL = "https://storage.costanza.dev/costanza-storage/sognalo/logo.png";
 
 const INJECTED_STYLES = `
   .gsap-reveal { visibility: hidden; }
