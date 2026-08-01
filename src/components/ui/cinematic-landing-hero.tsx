@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { ArrowRight, Check, Lightbulb, Rocket, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Lightbulb, Rocket } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
+
+const LOGO_URL = "https://r2.costanza.dev/costanza-storage/sognalo/logo.png";
 
 const INJECTED_STYLES = `
   .gsap-reveal { visibility: hidden; }
@@ -135,9 +137,8 @@ export function CinematicHero({
       <div className="bg-grid-theme pointer-events-none absolute inset-0 z-0 opacity-60" aria-hidden="true" />
 
       <header className="absolute inset-x-0 top-0 z-[70] mx-auto flex max-w-7xl items-center justify-between px-5 py-6 md:px-8">
-        <a href="#top" className="flex items-center gap-2.5 text-lg font-black tracking-tight text-white" aria-label="Sognalo, torna all'inizio">
-          <span className="flex h-8 w-8 items-center justify-center rounded-xl border border-white/15 bg-white/10"><Sparkles className="h-4 w-4" /></span>
-          SOGNALO
+        <a href="#top" className="flex items-center gap-2.5" aria-label="Sognalo, torna all'inizio">
+          <img src={LOGO_URL} alt="Sognalo" className="h-10 w-auto md:h-12" />
         </a>
         <a href="#piani" className="rounded-full border border-white/15 bg-white/[.06] px-4 py-2 text-sm font-semibold text-white backdrop-blur-xl transition hover:bg-white/10">Scopri i piani</a>
       </header>
