@@ -1,4 +1,4 @@
-const LOGO_URL = "https://r2.costanza.dev/costanza-storage/sognalo/logo.png";
+const LOGO_URL = "https://storage.costanza.dev/costanza-storage/sognalo/logo.png";
 
 export function Footer() {
   return (
