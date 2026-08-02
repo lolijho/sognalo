@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 const LOGO_URL = "https://storage.costanza.dev/sognalo/logo.png";
+const LOGO_FILTER = "brightness(0) invert(1)";
 
 const INJECTED_STYLES = `
   .gsap-reveal { visibility: hidden; }
@@ -27,7 +28,6 @@ const INJECTED_STYLES = `
   .tactile-btn:active { transform:translateY(1px) }
   .btn-light { background:linear-gradient(180deg,#fff,#e8edff);color:#0b1020;box-shadow:0 2px 4px rgba(0,0,0,.1),0 14px 28px -5px rgba(0,0,0,.45),inset 0 1px 1px #fff,inset 0 -3px 6px rgba(0,0,0,.07) }
   .btn-ghost { background:linear-gradient(180deg,#292d3a,#151721);color:white;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 13px 25px -5px rgba(0,0,0,.9),inset 0 1px 1px rgba(255,255,255,.13) }
-  .progress-ring { transform:rotate(-90deg);transform-origin:center;stroke-dasharray:402;stroke-dashoffset:402;stroke-linecap:round }
   .transform-style-3d { transform-style:preserve-3d }
   @media (prefers-reduced-motion: reduce) { .gsap-reveal { visibility:visible } }
 `;
@@ -113,7 +113,6 @@ export function CinematicHero({
         .to(".main-card", { width: "100%", height: "100%", borderRadius: 0, duration: 1.5, ease: "power3.inOut" })
         .fromTo(".mockup-scroll-wrapper", { y: 280, z: -500, rotationX: 45, rotationY: -25, autoAlpha: 0, scale: 0.62 }, { y: 0, z: 0, rotationX: 0, rotationY: 0, autoAlpha: 1, scale: 1, duration: 2.4, ease: "expo.out" }, "-=.8")
         .to(".phone-widget", { autoAlpha: 1, y: 0, stagger: 0.13, duration: 1.2, ease: "back.out(1.2)" }, "-=1.4")
-        .to(".progress-ring", { strokeDashoffset: 58, duration: 1.8, ease: "power3.inOut" }, "-=1.1")
         .to(".counter-val", { innerHTML: metricValue, snap: { innerHTML: 1 }, duration: 1.6, ease: "expo.out" }, "-=1.8")
         .fromTo(".floating-badge", { y: 90, scale: 0.75, rotationZ: -8 }, { y: 0, autoAlpha: 1, scale: 1, rotationZ: 0, stagger: 0.2, duration: 1.4, ease: "back.out(1.5)" }, "-=1.6")
         .fromTo(".card-copy", { x: -45 }, { x: 0, autoAlpha: 1, duration: 1.4, ease: "power4.out" }, "-=1.2")
@@ -138,7 +137,7 @@ export function CinematicHero({
 
       <header className="absolute inset-x-0 top-0 z-[70] mx-auto flex max-w-7xl items-center justify-between px-5 py-6 md:px-8">
         <a href="#top" className="flex items-center gap-2.5" aria-label="Sognalo, torna all'inizio">
-          <img src={LOGO_URL} alt="Sognalo" className="h-10 w-auto md:h-12" />
+          <img src={LOGO_URL} alt="Sognalo" className="h-16 w-auto md:h-24" style={{ filter: LOGO_FILTER }} />
         </a>
         <a href="#piani" className="rounded-full border border-white/15 bg-white/[.06] px-4 py-2 text-sm font-semibold text-white backdrop-blur-xl transition hover:bg-white/10">Scopri i piani</a>
       </header>
@@ -165,7 +164,7 @@ export function CinematicHero({
           <div className="card-sheen" aria-hidden="true" />
           <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col items-center justify-evenly gap-2 px-4 py-7 lg:grid lg:grid-cols-3 lg:gap-8 lg:px-12 lg:py-0">
             <div className="card-brand gsap-reveal order-1 flex w-full justify-center lg:order-3 lg:justify-end">
-              <h2 className="text-card-silver font-display text-5xl font-black uppercase tracking-[-.08em] md:text-7xl lg:text-[7rem]">{brandName}</h2>
+              <h2 className="text-card-silver font-display text-3xl font-black uppercase tracking-[-.06em] md:text-5xl lg:text-6xl">{brandName}</h2>
             </div>
 
             <div className="mockup-scroll-wrapper order-2 relative flex h-[390px] w-full items-center justify-center lg:h-[600px]" style={{ perspective: "1000px" }}>
@@ -179,7 +178,6 @@ export function CinematicHero({
                         <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5"><Lightbulb className="h-4 w-4 text-amber-300" /></div>
                       </div>
                       <div className="phone-widget relative mx-auto mb-7 flex h-44 w-44 translate-y-6 items-center justify-center">
-                        <svg className="absolute inset-0 h-full w-full" aria-hidden="true"><circle cx="88" cy="88" r="64" fill="none" stroke="rgba(255,255,255,.04)" strokeWidth="12" /><circle className="progress-ring" cx="88" cy="88" r="64" fill="none" stroke="#7182ff" strokeWidth="12" /></svg>
                         <div className="z-10 text-center"><strong className="counter-val block text-5xl font-black tracking-tighter">0</strong><span className="text-[8px] font-bold uppercase tracking-[.16em] text-indigo-200/50">{metricLabel}</span></div>
                       </div>
                       <div className="space-y-3">
