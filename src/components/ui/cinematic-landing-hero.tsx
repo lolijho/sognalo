@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
-const LOGO_URL = "https://storage.costanza.dev/sognalo/logo.png";
+const LOGO_URL = "https://storage.costanza.dev/sognalo/logo.svg";
 
 const INJECTED_STYLES = `
   .gsap-reveal { visibility: hidden; }
@@ -138,7 +138,7 @@ export function CinematicHero({
 
       <header className="absolute inset-x-0 top-0 z-[70] mx-auto flex max-w-7xl items-center justify-between px-5 py-6 md:px-8">
         <a href="#top" className="flex items-center gap-2.5" aria-label="Sognalo, torna all'inizio">
-          <img src={LOGO_URL} alt="Sognalo" className="h-12 w-12 object-contain md:h-14 md:w-14" />
+          <img src={LOGO_URL} alt="Sognalo" className="h-7 w-auto md:h-9" />
         </a>
         <a href="#piani" className="rounded-full border border-white/15 bg-white/[.06] px-4 py-2 text-sm font-semibold text-white backdrop-blur-xl transition hover:bg-white/10">Scopri i piani</a>
       </header>
