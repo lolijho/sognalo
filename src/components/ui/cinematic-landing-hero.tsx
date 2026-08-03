@@ -9,11 +9,15 @@ import { cn } from "@/lib/utils";
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 const LOGO_URL = "https://storage.costanza.dev/sognalo/logo.svg";
+const HERO_IMAGE_URL = "https://storage.costanza.dev/sognalo/hero-oniric.jpg";
 
 const INJECTED_STYLES = `
   .gsap-reveal { visibility: hidden; }
   .film-grain { position:absolute;inset:0;pointer-events:none;z-index:60;opacity:.045;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") }
   .bg-grid-theme { background-size:60px 60px;background-image:linear-gradient(to right,rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.045) 1px,transparent 1px);mask-image:radial-gradient(ellipse at center,#000 0%,transparent 72%);-webkit-mask-image:radial-gradient(ellipse at center,#000 0%,transparent 72%) }
+  .hero-image-layer { position:absolute;inset:0;z-index:1;background-image:url("${HERO_IMAGE_URL}");background-size:cover;background-position:center;opacity:.35;mask-image:radial-gradient(ellipse 80% 70% at center,#000 0%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at center,#000 0%,transparent 80%);animation:hero-float 24s ease-in-out infinite alternate }
+  .hero-image-overlay { position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at center,rgba(6,10,28,.35) 0%,rgba(6,10,28,.82) 65%,rgba(6,10,28,.95) 100%) }
+  @keyframes hero-float { 0%{transform:scale(1) translateY(0)} 50%{transform:scale(1.06) translateY(-12px)} 100%{transform:scale(1.03) translateY(6px)} }
   .text-3d-matte { color:#f8fafc;text-shadow:0 12px 32px rgba(106,125,255,.24),0 2px 4px rgba(0,0,0,.3) }
   .text-silver-matte { background:linear-gradient(180deg,#fff 0%,#7886af 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 12px 25px rgba(69,88,230,.22));transform:translateZ(0) }
   .text-card-silver { background:linear-gradient(180deg,#fff 0%,#9aa8ca 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 12px 24px rgba(0,0,0,.75)) }
@@ -28,7 +32,7 @@ const INJECTED_STYLES = `
   .btn-light { background:linear-gradient(180deg,#fff,#e8edff);color:#0b1020;box-shadow:0 2px 4px rgba(0,0,0,.1),0 14px 28px -5px rgba(0,0,0,.45),inset 0 1px 1px #fff,inset 0 -3px 6px rgba(0,0,0,.07) }
   .btn-ghost { background:linear-gradient(180deg,#292d3a,#151721);color:white;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 13px 25px -5px rgba(0,0,0,.9),inset 0 1px 1px rgba(255,255,255,.13) }
   .transform-style-3d { transform-style:preserve-3d }
-  @media (prefers-reduced-motion: reduce) { .gsap-reveal { visibility:visible } }
+  @media (prefers-reduced-motion: reduce) { .gsap-reveal { visibility:visible } .hero-image-layer { animation:none } }
 `;
 
 export interface CinematicHeroProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -107,7 +111,7 @@ export function CinematicHero({
       gsap.timeline({
         scrollTrigger: { trigger: containerRef.current, start: "top top", end: "+=6200", pin: true, scrub: 1, anticipatePin: 1 },
       })
-        .to([".hero-text-wrapper", ".bg-grid-theme"], { scale: 1.14, filter: "blur(18px)", opacity: 0.16, duration: 2 }, 0)
+        .to([".hero-text-wrapper", ".bg-grid-theme", ".hero-image-layer", ".hero-image-overlay"], { scale: 1.14, filter: "blur(18px)", opacity: 0.16, duration: 2 }, 0)
         .to(".main-card", { y: 0, ease: "power3.inOut", duration: 2 }, 0)
         .to(".main-card", { width: "100%", height: "100%", borderRadius: 0, duration: 1.5, ease: "power3.inOut" })
         .fromTo(".mockup-scroll-wrapper", { y: 280, z: -500, rotationX: 45, rotationY: -25, autoAlpha: 0, scale: 0.62 }, { y: 0, z: 0, rotationX: 0, rotationY: 0, autoAlpha: 1, scale: 1, duration: 2.4, ease: "expo.out" }, "-=.8")
@@ -130,6 +134,8 @@ export function CinematicHero({
   return (
     <div ref={containerRef} className={cn("relative flex h-screen w-full items-center justify-center overflow-hidden bg-background text-foreground", className)} style={{ perspective: "1500px" }} {...props}>
       <style dangerouslySetInnerHTML={{ __html: INJECTED_STYLES }} />
+      <div className="hero-image-layer" aria-hidden="true" />
+      <div className="hero-image-overlay" aria-hidden="true" />
       <div className="film-grain" aria-hidden="true" />
       <div className="bg-grid-theme pointer-events-none absolute inset-0 z-0 opacity-60" aria-hidden="true" />
 
