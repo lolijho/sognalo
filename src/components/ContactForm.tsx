@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { Link } from "react-router-dom";
 import { ArrowRight, Check, Loader2, Mail, Sparkles, AlertCircle } from "lucide-react";
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -166,9 +167,9 @@ export function ContactForm() {
         )}
 
         <div className="mt-8 border-t border-white/[.06] pt-6 text-center">
-          <a href="/come-funziona" className="text-sm font-semibold text-indigo-300 transition hover:text-indigo-200">
+          <Link to="/come-funziona" className="text-sm font-semibold text-indigo-300 transition hover:text-indigo-200">
             Come funziona l'invio? →
-          </a>
+          </Link>
         </div>
       </div>
     </section>
