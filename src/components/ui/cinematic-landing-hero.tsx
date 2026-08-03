@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 const LOGO_URL = "https://storage.costanza.dev/sognalo/logo.svg";
-const HERO_BG_URL = "https://storage.costanza.dev/sognalo/hero-bg.jpg";
+const HERO_BG_URL = "https://storage.costanza.dev/sognalo/hero-oniric.jpg";
 
 const INJECTED_STYLES = `
   .gsap-reveal { visibility: hidden; }
@@ -40,8 +40,6 @@ export interface CinematicHeroProps extends React.HTMLAttributes<HTMLDivElement>
   tagline2?: string;
   cardHeading?: string;
   cardDescription?: React.ReactNode;
-  metricValue?: number;
-  metricLabel?: string;
   ctaHeading?: string;
   ctaDescription?: string;
 }
@@ -52,8 +50,6 @@ export function CinematicHero({
   tagline2 = "Rendiamola reale.",
   cardHeading = "Non solo fornitori. Partner.",
   cardDescription = <>Progettiamo, sviluppiamo e lanciamo il tuo prodotto digitale condividendo <strong className="font-semibold text-white">rischio e risultati.</strong></>,
-  metricValue = 4,
-  metricLabel = "modelli flessibili",
   ctaHeading = "Il capitale non deve fermarti.",
   ctaDescription = "Scegli il modello più adatto alla tua idea. Partiamo da zero, insieme.",
   className,
@@ -128,7 +124,7 @@ export function CinematicHero({
         .to(".main-card", { y: -window.innerHeight - 300, duration: 1.5, ease: "power3.in" });
     }, containerRef);
     return () => ctx.revert();
-  }, [metricValue]);
+  }, []);
 
   return (
     <div ref={containerRef} className={cn("relative flex h-screen w-full items-center justify-center overflow-hidden bg-background text-foreground", className)} style={{ perspective: "1500px" }} {...props}>
