@@ -17,11 +17,15 @@ export function ContactForm() {
     setErrorMessage("");
 
     const formData = new FormData(e.currentTarget);
+    // "Non lo so ancora" non è un piano reale: non lo inviamo al server
+    const rawPiano = formData.get("piano") as string;
+    const piano = rawPiano && rawPiano !== "Non lo so ancora" ? rawPiano : undefined;
+
     const payload = {
       nome: formData.get("nome"),
       email: formData.get("email"),
       messaggio: formData.get("messaggio"),
-      piano: formData.get("piano") || undefined,
+      piano,
     };
 
     try {
