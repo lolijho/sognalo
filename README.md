@@ -40,7 +40,7 @@ Configurazione applicazione Coolify:
 
 - **Build pack:** Dockerfile
 - **Dockerfile:** `/Dockerfile`
-- **Porta esposta:** `3000`
+- **Porta esposta:** `80` (Coolify imposta `PORT=80`; il server e l'healthcheck la seguono)
 - **Variabili d'ambiente:** `RESEND_API_KEY` (obbligatoria per il form)
 
 Il server è configurato con `trust proxy` per funzionare correttamente dietro il reverse proxy di Coolify.
