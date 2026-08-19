@@ -182,7 +182,7 @@ export function CinematicHero({
                     </div>
                   </div>
                 </div>
-                <div className="floating-badge floating-ui-badge absolute left-[-20px] top-8 z-30 flex items-center gap-3 rounded-2xl p-3 lg:left-[-85px] lg:top-14 lg:p-4"><span className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-300/20 bg-amber-300/10">💡</span><div><p className="text-xs font-bold text-white lg:text-sm">Idea validata</p><p className="text-[10px] text-indigo-200/55 lg:text-xs">Pronta per partire</p></div></div>
+                <div className="floating-badge floating-ui-badge absolute left-[-20px] top-8 z-30 hidden items-center gap-3 rounded-2xl p-3 md:flex lg:left-[-85px] lg:top-14 lg:p-4"><span className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-300/20 bg-amber-300/10">💡</span><div><p className="text-xs font-bold text-white lg:text-sm">Idea validata</p><p className="text-[10px] text-indigo-200/55 lg:text-xs">Pronta per partire</p></div></div>
                 <div className="floating-badge floating-ui-badge absolute bottom-14 right-[-20px] z-30 flex items-center gap-3 rounded-2xl p-3 lg:bottom-20 lg:right-[-85px] lg:p-4"><span className="flex h-9 w-9 items-center justify-center rounded-full border border-emerald-300/20 bg-emerald-300/10">🚀</span><div><p className="text-xs font-bold text-white lg:text-sm">Go to market</p><p className="text-[10px] text-indigo-200/55 lg:text-xs">Costruiamo insieme</p></div></div>
               </div>
             </div>
