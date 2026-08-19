@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sognalo.it/sitemap.xml

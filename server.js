@@ -7,11 +7,41 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Dietro Coolify/reverse proxy: serve per far vedere a express-rate-limit
+// l'IP reale del client (X-Forwarded-For) invece di quello del proxy.
+app.set("trust proxy", 1);
+app.disable("x-powered-by");
+
+if (!process.env.RESEND_API_KEY) {
+  console.warn("ATTENZIONE: RESEND_API_KEY non impostata — il form di contatto non funzionerà.");
+}
+
+app.use((_req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "SAMEORIGIN");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  next();
+});
+
 app.use(express.json({ limit: "32kb" }));
-app.use(express.static(path.join(__dirname, "dist")));
+
+// Gli asset buildati da Vite hanno hash nel nome: cache lunga e immutable.
+// index.html è escluso (index: false) e servito dal fallback SPA con no-cache.
+app.use(
+  express.static(path.join(__dirname, "dist"), {
+    index: false,
+    maxAge: "1y",
+    immutable: true,
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith(".html")) {
+        res.setHeader("Cache-Control", "no-cache");
+      }
+    },
+  })
+);
 
 // --- Whitelist valori ammessi per il parametro "piano" ---
-const ALLOWED_PIANI = ["Sprint", "Partner", "Launch", "Co-founder"];
+const ALLOWED_PIANI = ["Sprint", "Partner", "Launch", "Co-founder", "Mensile"];
 
 // --- Rate limiter per l'endpoint /api/contact ---
 // 5 richieste ogni 15 minuti per IP — previene abuso/spam su endpoint pubblico
@@ -121,7 +151,12 @@ app.post("/api/contact", contactLimiter, async (req, res) => {
   }
 });
 
+app.use("/api", (_req, res) => {
+  res.status(404).json({ error: "Endpoint non trovato" });
+});
+
 app.get("*", (_req, res) => {
+  res.setHeader("Cache-Control", "no-cache");
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 

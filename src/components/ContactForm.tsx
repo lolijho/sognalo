@@ -9,7 +9,7 @@ export function ContactForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const [selectedPiano, setSelectedPiano] = useState("");
 
-  const piani = ["Sprint", "Partner", "Launch", "Co-founder", "Non lo so ancora"];
+  const piani = ["Sprint", "Partner", "Launch", "Co-founder", "Mensile", "Non lo so ancora"];
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
