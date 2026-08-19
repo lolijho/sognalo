@@ -3,19 +3,23 @@ FROM node:22-alpine AS build
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --no-audit --no-fund
 
 COPY . .
 RUN npm run build
 
+# Rimuove le devDependencies: lo stage production riusa questi node_modules,
+# così l'intera build esegue un solo npm ci (niente install paralleli).
+RUN npm prune --omit=dev
+
 FROM node:22-alpine AS production
 
 WORKDIR /app
+ENV NODE_ENV=production
 
-COPY package*.json ./
-RUN npm ci --omit=dev
-
+COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
+COPY package*.json ./
 COPY server.js .
 
 EXPOSE 3000
