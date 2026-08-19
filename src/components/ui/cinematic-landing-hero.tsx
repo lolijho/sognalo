@@ -104,7 +104,7 @@ export function CinematicHero({
         .to(".text-days", { duration: 1.3, clipPath: "inset(0 0% 0 0)", ease: "power4.inOut" }, "-=.9");
 
       gsap.timeline({
-        scrollTrigger: { trigger: containerRef.current, start: "top top", end: "+=6200", pin: true, scrub: 1, anticipatePin: 1 },
+        scrollTrigger: { trigger: containerRef.current, start: "top top", end: isMobile ? "+=3400" : "+=6200", pin: true, scrub: 1, anticipatePin: 1 },
       })
         .to([".hero-text-wrapper", ".bg-grid-theme", ".hero-bg"], { scale: 1.14, filter: "blur(18px)", opacity: 0.16, duration: 2 }, 0)
         .to(".main-card", { y: 0, ease: "power3.inOut", duration: 2 }, 0)
